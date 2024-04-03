@@ -1,80 +1,104 @@
-// Variabler för text och färger
-$font-text: 'Roboto', Helvetica, Arial, sans-serif;
-$font-heading: "Montserrat", 'Roboto', Helvetica, sans-serif;
-$background-color: rgb(255, 255, 255);
-$bg-color-white: rgb(238, 238, 238);
-$primary-color: rgb(32, 32, 32);
-$basic-black: black;
-$secondary-color: rgb(34, 112, 185);
-$light-grey-color: rgb(190, 190, 190);
-$link-color: hotpink;
-$nav-color: rgb(77, 74, 75);
-$mobile-nav-color: hotpink;
-$sub-head-color: #05081f;
-$hover-color: darken($link-color, 10%);
-$table-hover: darken($bg-color-white, 10%);
-$text-color: #333;
-$light-text-color: white;
-$add-btn-color: rgb(34, 122, 16);
-$edit-btn-color: rgb(240, 153, 53);
-$delete-btn-color: rgb(236, 58, 58);
+@use 'abstracts';
 
-// Extend för knappar inkl. hover
-%button-style {
-    background-color: $link-color;
-    color: $light-text-color;
-    font-family: $font-heading;
-    margin: 2rem 0;
-    letter-spacing: 0.2rem;
-    font-weight: 600;
-    font-size: 2.2rem;
+// Globala värden
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Typografi
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+// Body
+body {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    font-family: abstracts.$font-text;
+    font-weight: 400;
+    background-color: abstracts.$background-color;
+    color: abstracts.$text-color;
+    height: 100%;
+}
+
+/* Styling för rubriker, mixin för gemensamma egenskaper */
+h1 {
+    @include abstracts.heading-style(3rem, 4rem, 700);
+    text-align: center;
+    color: abstracts.$primary-color;
+    margin: 4rem 0 0 0;
+}
+
+h2 {
+    @include abstracts.heading-style(2.6rem, 3.6rem, 600);
+    margin: 4rem 0 0 0;
+}
+
+h3 {
+    @include abstracts.heading-style(2.2rem, 3.2rem, 600);
+    margin: 2rem 0 2rem 0;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.4rem;
+        letter-spacing: 0.2rem;
+        margin: 2rem 0 0 0;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+}
+
+// Styling för paragrafer
+p {
+    margin: 1.5rem 0;
+    max-width: 75ch;
+}
+
+// Styling för sektioner
+section {
     width: 100%;
-    height: auto;
-    border: none;
-    padding: 0.5rem 1rem;
+    max-width: 900px;
+}
+
+// Styling för länkar
+a {
+    color: abstracts.$link-color;
+
+    &:hover {
+        color: abstracts.$hover-color;
+    }
+}
+
+// Styling för input
+input,
+select {
+    @include abstracts.heading-style(1.4rem, 2.4rem, 400);
+    color: abstracts.$text-color;
+    height: 3rem;
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0 0 2rem 0;
     border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: $hover-color;
-    }
 }
 
-// Mixin för flex och centering av layout
-@mixin center-flex() {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+// Styling för labels
+label {
+    @include abstracts.heading-style(1.6rem, 2.6rem, 600);
+    margin-bottom: 0.5rem;
 }
 
-// Mixin för gemensamma egenskaper för rubriker
-@mixin heading-style($font-size, $line-height, $font-weight) {
-    font-size: $font-size;
-    font-family: $font-heading;
-    color: $primary-color;
-    font-weight: $font-weight;
-    letter-spacing: 0.2rem;
-    line-height: $line-height;
-}
-
-// Extend för navlänkar
-%nav-style {
-    font-size: 2rem;
-    font-family: $font-heading;
-    color: $basic-black;
-    font-weight: 600;
-    letter-spacing: 0.2rem;
-    text-decoration: none;
-    padding: 0 2rem;
-
-    &:hover {
-        text-decoration: underline;
-        color: $hover-color;
-        text-underline-offset: 0.5rem;
-
-        // Ändrar hover vid mindre skärmar
-        @media (max-width: 800px) {
-            color: $basic-black;
-        }
-    }
+// Styling för blank div (luft nedanför main)
+#blank {
+    width: 100%;
+    height: 5rem;
 }
