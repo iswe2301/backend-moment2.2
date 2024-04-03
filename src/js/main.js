@@ -1,5 +1,8 @@
 "use strict";
 
+// Importerar modul
+import { fetchExperiences } from './experiences.js';
+
 // Hämtar element och lagrar i variabler
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
@@ -25,3 +28,9 @@ menuToggle.addEventListener("click", () => {
         closeIcon.style.transform = "translate(-50%, -50%) rotate(-360deg)"; // Återställer kryssikonens rotation
     }
 });
+
+// Skapar initieringsfunktion som körs när webbsidan laddats
+window.onload = init;
+function init() {
+    fetchExperiences(); // Anropar funktion för att hämta arbetserfarenheter
+}
