@@ -18,8 +18,9 @@
 
 .delete-btn {
     @extend %button-style;
-    width: 11rem;
-    font-size: 1.6rem;
+    width: 15rem;
+    height: 4rem;
+    font-size: 2rem;
     padding: 0.5rem;
     background-color: abstracts.$delete-btn-color;
     display: flex;
@@ -112,10 +113,49 @@ img {
     padding-top: 1rem;
 }
 
+/* Styling för tooltip med hjälp-cursor */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+/* Döljer tooltip initialt, stylar boxen och text, transition 0.5 sekunders opacity, absolut positionering */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100%;
+    max-width: 30rem;
+    background-color: abstracts.$transparent-grey;
+    color: abstracts.$light-text-color;
+    font-size: 1.4rem;
+    text-align: center;
+    border-radius: 5px;
+    padding: 2rem 1rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 4rem;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* 100% opacity när tooltip visas vid hover */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
 // Ökar bredd vid mindre skrämar (max 600px)
 @media (max-width: 600px) {
     #submit {
         width: 100%;
         margin: 2rem 0 0 0;
+    }
+    .delete-btn {
+        width: 100%;
+        justify-content: center;
+        i {
+            margin-left: 1rem;
+        }
     }
 }
