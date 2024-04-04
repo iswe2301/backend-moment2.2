@@ -32,19 +32,47 @@
 
     <!-- Huvudinnehåll -->
     <main>
-    </main>
+        <h1>Lägg till erfarenhet</h1>
+        <section id="add-section">
+            <h2>Ny erfarenhet</h2>
+            <!-- Formulär för att lägga till nya erfarenheter -->
+            <form id="form-container">
+                <label for="companyname">Företagsnamn <span class="required">*</span></label>
+                <input type="text" id="companyname" name="companyname" placeholder="Ange företagets namn..." required>
 
-    <!-- Mobilmeny -->
-    <div class="menu-container">
-        <nav class="mobile-menu hidden">
-            <ul>
-                <li><a href="index.html">ERFARENHETER</a></li>
-                <li><a class="active" href="add.html">LÄGG TILL ERFARENHET</a></li>
-                <li><a href="about.html">OM SIDAN</a></li>
-            </ul>
-        </nav>
-        <button class="menu-toggle">MENY <i class="fa-solid fa-bars"></i><i class="fa-solid fa-xmark"></i></button>
-    </div>
+                <label for="jobtitle">Jobbtitel <span class="required">*</span></label>
+                <input type="text" id="jobtitle" name="jobtitle" placeholder="Ange din jobbtitel..." required>
+
+                <label for="location">Plats <span class="required">*</span></label>
+                <input type="text" id="location" name="location" placeholder="Ange ort..." required>
+
+                <label for="startdate">Startdatum <span class="required">*</span></label>
+                <input type="date" id="startdate" name="startdate" required>
+
+                <label for="enddate">Slutdatum</label>
+                <input type="date" id="enddate" name="enddate">
+
+                <label for="description">Beskrivning <span class="required">*</span></label>
+                <textarea id="description" name="description"
+                    placeholder="Skriv en kort beskrivning av din erfarenhet..." required></textarea>
+                <span id="error-message">Vänligen fyll i alla obligatoriska (*) fält!</span>
+                <button type="submit" id="submit">Lägg till erfarenhet</button>
+            </form>
+        </section>
+        <span class="popup"></span>
+
+        <!-- Mobilmeny -->
+        <div class="menu-container">
+            <nav class="mobile-menu hidden">
+                <ul>
+                    <li><a href="index.html">ERFARENHETER</a></li>
+                    <li><a class="active" href="add.html">LÄGG TILL ERFARENHET</a></li>
+                    <li><a href="about.html">OM SIDAN</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle">MENY <i class="fa-solid fa-bars"></i><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer>
