@@ -1,6 +1,6 @@
 "use strict";
 
-const url = "https://backend-moment2-1.onrender.com/api/workexperience"; // Lagrar url för API
+export const url = "https://backend-moment2-1.onrender.com/api/workexperience"; // Lagrar url för API, lägger till export
 
 // Asynkron funktion för att hämta data (exporteras som modul)
 export async function fetchExperiences() {
@@ -10,5 +10,57 @@ export async function fetchExperiences() {
         displayExperiences(data); // Anropar funktion för att visa erfarenheter med svaret från anropet
     } catch (error) {
         console.error('Felmeddelande:', error); // Fångar upp ev. felmeddelanen
+    }
+}
+
+
+// Funktion för att visa befintliga jobberfarenheter
+function displayExperiences(experiences) {
+
+    // Hämtar container för jobberfarenheter och lagrar i variabel
+    const workContainer = document.getElementById("work-container");
+
+    // Sorterar erfarenheterna baserat på startdatum med den senast påbörjade erfarenheten först
+    experiences.sort((a, b) => {
+        if (a.startdate < b.startdate) {
+            return 1; // Om a är mindre (tidigare datum) än b, sortera a efter b
+        } else if (a.startdate > b.startdate) {
+            return -1; // Om a är större (senare datum) än b, sortera a före b
+        } else {
+            return 0; // Om a och b är samma, behåll den nuvarande ordningen
+        }
+    });
+
+    // Kontrollerar om containern existerar på sidan
+    if (workContainer) {
+        // Loopar isåfall igenom varje erfarenhet
+        experiences.forEach(experience => {
+
+            // Använder substring för att endast inkludera de 10 första tecknen i datumet (börjar på index 0)
+            const startDate = experience.startdate.substring(0, 10);
+
+            let endDate = "Pågående"; // Sätter slutdatum till "Pågående" initalt (om den är null)
+
+            // Kontrollerar om enddate finns och inte är null
+            if (experience.enddate) {
+                endDate = experience.enddate.substring(0, 10); // Inkluderar datumets första 10 tecken
+            }
+
+            // Skapar en article för varje jobberfarenhet
+            const articleEl = document.createElement("article");
+
+            // Sätter artikelns innehåll till erfarenhetens data (företagsnamn, titel, plats, datum och beskrivning)
+            articleEl.innerHTML = `
+            <h3>${experience.companyname}</h3>
+            <p><strong>Roll:</strong> ${experience.jobtitle}</p>
+            <p><strong>Plats:</strong> ${experience.location}</p>
+            <p><strong>Tidsperiod:</strong> ${startDate} - ${endDate}</p>
+            <h4>Beskrivning</h4>
+            <p>${experience.description}</p>
+        `;
+
+            // Lägger till artikeln i container för att skriva ut till DOM
+            workContainer.appendChild(articleEl);
+        });
     }
 }
