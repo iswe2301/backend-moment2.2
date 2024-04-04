@@ -1,5 +1,8 @@
 "use strict";
 
+// Importerar modul
+import { deleteExperience } from './delete.js';
+
 export const url = "https://backend-moment2-1.onrender.com/api/workexperience"; // Lagrar url för API, lägger till export
 
 // Asynkron funktion för att hämta data (exporteras som modul)
@@ -7,7 +10,10 @@ export async function fetchExperiences() {
     try {
         const response = await fetch(url); // Inväntar fetchanrop
         const data = await response.json(); // Inväntar svar och omvandlar till json
-        displayExperiences(data); // Anropar funktion för att visa erfarenheter med svaret från anropet
+        // Kontrollerar om resultatet innehåller några erfarenheter
+        if (data.length > 0) {
+            displayExperiences(data); // Anropar funktion för att visa erfarenheter med svaret från anropet
+        }
     } catch (error) {
         console.error('Felmeddelande:', error); // Fångar upp ev. felmeddelanen
     }
@@ -49,18 +55,31 @@ function displayExperiences(experiences) {
             // Skapar en article för varje jobberfarenhet
             const articleEl = document.createElement("article");
 
+            // Skapar ett unikt ID för varje article baserat på erfarenhetens ID
+            let articleID = `${experience.id}`;
+            articleEl.id = articleID;
+
             // Sätter artikelns innehåll till erfarenhetens data (företagsnamn, titel, plats, datum och beskrivning)
             articleEl.innerHTML = `
-            <h3>${experience.companyname}</h3>
+            <div>
+            <h3 class="company-name">${experience.companyname}</h3>
             <p><strong>Roll:</strong> ${experience.jobtitle}</p>
             <p><strong>Plats:</strong> ${experience.location}</p>
             <p><strong>Tidsperiod:</strong> ${startDate} - ${endDate}</p>
             <h4>Beskrivning</h4>
             <p>${experience.description}</p>
+            </div>
+            <div><button class="delete-btn">Radera <i class='fa fa-solid fa-trash-can'></i></button></div>
         `;
 
             // Lägger till artikeln i container för att skriva ut till DOM
             workContainer.appendChild(articleEl);
+
+            // Lägger till händelselyssnare för klick på delete-knappen
+            const deleteBtn = articleEl.querySelector(".delete-btn");
+            deleteBtn.addEventListener("click", () => {
+                deleteExperience(articleID); // Anropar funktion för att ta bort erfarenhet och skickar med specifikt ID
+            });
         });
     }
 }
