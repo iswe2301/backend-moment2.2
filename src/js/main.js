@@ -11,6 +11,9 @@ const menuIcon = document.querySelector(".fa-bars");
 const closeIcon = document.querySelector(".fa-xmark");
 const containerEl = document.getElementById("overlay");
 const submitBtn = document.getElementById("submit");
+const formEl = document.getElementById("form-container");
+let errorMsg = document.getElementById("error-message")
+let popupMsg = document.querySelector(".popup");
 
 // Skapar klickhändelselyssnare för menyknappen, anonym funktion
 menuToggle.addEventListener("click", () => {
@@ -36,24 +39,52 @@ window.onload = init;
 function init() {
     fetchExperiences(); // Anropar funktion för att hämta arbetserfarenheter
 
-    // Kontrollerar om submit-knappen finns på sidan
-    if (submitBtn) {
-
+    // Kontrollerar om formuläret finns på sidan
+    if (formEl) {
         // Skapar isåfall en händelselyssnare vid klick
         submitBtn.addEventListener("click", (event) => {
             event.preventDefault(); // Förhindrar formulärets standardbeteende (så att sidan inte laddas om)
+            // Förhindrar formuläret från att skickas om det inte är giltigt
+            if (!formEl.checkValidity()) {
+                errorMsg.style.display = "flex"; // Visar felmeddelandet om formuläret inte är giltigt
+            } else {
+                errorMsg.style.display = "none"; // Döljer felmeddelandet om formuläret är giltigt
 
-            // Hämtar värdena från formuläret
-            const companyname = document.getElementById('companyname').value;
-            const jobtitle = document.getElementById('jobtitle').value;
-            const location = document.getElementById('location').value;
-            const startdate = document.getElementById('startdate').value;
-            const enddate = document.getElementById('enddate').value;
-            const description = document.getElementById('description').value;
+                // Hämtar värdena från formuläret
+                const companyname = document.getElementById('companyname').value;
+                const jobtitle = document.getElementById('jobtitle').value;
+                const location = document.getElementById('location').value;
+                const startdate = document.getElementById('startdate').value;
+                const enddate = document.getElementById('enddate').value;
+                const description = document.getElementById('description').value;
 
-            // Anropar funktion för att skapa ny jobberfarenhet, skickar med värdena från formuläret
-            createExperience(companyname, jobtitle, location, startdate, enddate, description);
+                // Anropar funktion för att skapa ny jobberfarenhet, skickar med värdena från formuläret
+                createExperience(companyname, jobtitle, location, startdate, enddate, description);
 
+                popupMsg.classList.add("show"); // Lägger till klassen show vid klick på knappen
+                popupMsg.innerHTML = `Jobberfarenhet för ${companyname} har skapats.`; // Skapar innehållet för popupen
+
+                // Döljer popup efter 3 sekunder
+                setTimeout(function () {
+                    popupMsg.classList.remove("show"); // Tar bort show-klassen
+                    popupMsg.innerHTML = ""; // Tömmer innehållet
+                    window.location.href = "index.html"; // Omdirigerar användaren till startsidan efter att popupen har dolts
+                }, 3000); // 3 sekunder
+            }
+        });
+
+        // Hämtar alla input, date och textarea-element från formuläret och lagrar i variabel
+        const formInputs = formEl.querySelectorAll("input, date, textarea");
+
+        // Lägger till händelselyssnare för varje input och select i formuläret
+        formInputs.forEach(input => {
+            input.addEventListener("input", () => {
+                // Kontrollerar om formuläret är giltigt
+                if (formEl.checkValidity()) {
+                    errorMsg.style.display = "none"; // Döljer felmeddelandet när fomruläret är giltigt
+                }
+            });
         });
     }
-}
+
+};
