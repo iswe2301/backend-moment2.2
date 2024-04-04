@@ -81,6 +81,8 @@ section {
 
 // Styling för articles
 article {
+    display: flex;
+    justify-content: space-between;
     padding: 2rem 4rem;
     margin: 3rem 2rem;
     background-color: abstracts.$light-pink;
