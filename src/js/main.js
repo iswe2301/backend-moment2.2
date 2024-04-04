@@ -13,7 +13,6 @@ const containerEl = document.getElementById("overlay");
 const submitBtn = document.getElementById("submit");
 const formEl = document.getElementById("form-container");
 let errorMsg = document.getElementById("error-message")
-let popupMsg = document.querySelector(".popup");
 
 // Skapar klickhändelselyssnare för menyknappen, anonym funktion
 menuToggle.addEventListener("click", () => {
@@ -60,16 +59,6 @@ function init() {
 
                 // Anropar funktion för att skapa ny jobberfarenhet, skickar med värdena från formuläret
                 createExperience(companyname, jobtitle, location, startdate, enddate, description);
-
-                popupMsg.classList.add("show"); // Lägger till klassen show vid klick på knappen
-                popupMsg.innerHTML = `Jobberfarenhet för ${companyname} har skapats.`; // Skapar innehållet för popupen
-
-                // Döljer popup efter 3 sekunder
-                setTimeout(function () {
-                    popupMsg.classList.remove("show"); // Tar bort show-klassen
-                    popupMsg.innerHTML = ""; // Tömmer innehållet
-                    window.location.href = "index.html"; // Omdirigerar användaren till startsidan efter att popupen har dolts
-                }, 3000); // 3 sekunder
             }
         });
 
