@@ -12,7 +12,7 @@ const closeIcon = document.querySelector(".fa-xmark");
 const containerEl = document.getElementById("overlay");
 const submitBtn = document.getElementById("submit");
 const formEl = document.getElementById("form-container");
-let errorMsg = document.getElementById("error-message")
+export let errorMsg = document.getElementById("error-message");
 
 // Skapar klickhändelselyssnare för menyknappen, anonym funktion
 menuToggle.addEventListener("click", () => {
