@@ -1,7 +1,8 @@
 "use strict";
 
-// Importerar modul
+// Importerar moduler
 import { deleteExperience } from './delete.js';
+import { fillEditForm } from './edit.js';
 
 export const url = "https://backend-moment2-1.onrender.com/api/workexperience"; // Lagrar url för API, lägger till export
 
@@ -25,6 +26,7 @@ function displayExperiences(experiences) {
 
     // Hämtar container för jobberfarenheter och lagrar i variabel
     const workContainer = document.getElementById("work-container");
+    workContainer.innerHTML = ""; // Tömmer tidigare innehåll
 
     // Sorterar erfarenheterna baserat på startdatum med den senast påbörjade erfarenheten först
     experiences.sort((a, b) => {
@@ -69,11 +71,20 @@ function displayExperiences(experiences) {
             <h4>Beskrivning</h4>
             <p>${experience.description}</p>
             </div>
-            <div><button class="delete-btn">Radera <i class='fa fa-solid fa-trash-can'></i></button></div>
+            <div>
+            <button class="edit-btn">Redigera</button>
+            <button class="delete-btn">Radera <i class='fa fa-solid fa-trash-can'></i></button>
+            </div>
         `;
 
             // Lägger till artikeln i container för att skriva ut till DOM
             workContainer.appendChild(articleEl);
+
+            // Lägger till händelselyssnare för klick på redigera-knappen
+            const editBtn = articleEl.querySelector(".edit-btn");
+            editBtn.addEventListener("click", () => {
+                fillEditForm(experience); // Anropar funktion och skickar med erfarenhetens data
+            });
 
             // Lägger till händelselyssnare för klick på delete-knappen
             const deleteBtn = articleEl.querySelector(".delete-btn");
