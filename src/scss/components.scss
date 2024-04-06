@@ -134,12 +134,13 @@ img {
     letter-spacing: 0.2rem;
     font-weight: 600;
     transition: height 1s; // Lägger transition på höjden, höjden ändras under 1 sekund
+    z-index: 5;
 }
 
 // Styling för när popup visas
 .popup.show {
-    height: 5rem;
-    padding-top: 1rem;
+    height: auto;
+    padding: 1rem;
 }
 
 /* Styling för tooltip med hjälp-cursor */
@@ -191,5 +192,11 @@ img {
         i {
             margin-left: 1rem;
         }
+    }
+
+    // Styling för när popup visas
+    .popup.show {
+        height: auto;
+        padding: 1rem;
     }
 }
