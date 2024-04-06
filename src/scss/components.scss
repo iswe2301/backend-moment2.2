@@ -3,7 +3,8 @@
 /* STYLING FÖR KNAPPAR */
 
 // Inkluderar stil för standard knappar genom extend
-#submit {
+#submit,
+#submit-change {
     @extend %button-style;
     width: 50%;
     height: 4rem;
@@ -19,9 +20,10 @@
 .delete-btn {
     @extend %button-style;
     width: 15rem;
-    height: 4rem;
-    font-size: 2rem;
-    padding: 0.5rem;
+    height: 3.5rem;
+    font-size: 1.8rem;
+    padding: 0;
+    margin: 0.6rem 0;
     background-color: abstracts.$delete-btn-color;
     display: flex;
     justify-content: space-around;
@@ -34,17 +36,41 @@
     }
 }
 
+#edit-container {
+    display: none;
+    width: 100%;
+    padding: 0 2rem;
+}
+
 .edit-btn {
     @extend %button-style;
-    font-size: 1.4rem;
-    width: 12rem;
-    height: 2.6rem;
+    width: 15rem;
+    height: 3.5rem;
+    font-size: 1.8rem;
     padding: 0;
+    margin: 0.6rem 0;
     background-color: abstracts.$edit-btn-color;
 
     &:hover {
         background-color: darken(abstracts.$edit-btn-color, 10%);
     }
+}
+
+// Fixerar bakgrundsblder (picture-tagg) med 100% höjd/bredd
+.body-background {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+// Sätter bakgrundsbilde till 100% höjd/bredd och cover för att bilden ska täcka enligt rätt förhållanden
+#background-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 // Storlek för bilder
@@ -147,13 +173,18 @@ img {
 
 // Ökar bredd vid mindre skrämar (max 600px)
 @media (max-width: 600px) {
-    #submit {
+
+    #submit,
+    #submit-change {
         width: 100%;
         margin: 2rem 0 0 0;
     }
-    .delete-btn {
+
+    .delete-btn,
+    .edit-btn {
         width: 100%;
         justify-content: center;
+
         i {
             margin-left: 1rem;
         }
