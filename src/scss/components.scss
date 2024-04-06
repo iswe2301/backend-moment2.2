@@ -135,11 +135,12 @@ img {
     font-weight: 600;
     transition: height 1s; // Lägger transition på höjden, höjden ändras under 1 sekund
     z-index: 5;
+    box-shadow: 0px -4px 10px 0px rgb(0 0 0 / 20%); // Skugga
 }
 
 // Styling för när popup visas
 .popup.show {
-    height: auto;
+    height: 5rem;
     padding: 1rem;
 }
 
@@ -175,7 +176,14 @@ img {
     opacity: 1;
 }
 
-// Ökar bredd vid mindre skrämar (max 600px)
+// Ökar bredd vid mindre skrämar (max 1024px)
+@media (max-width: 1024px) {
+    .popup.show {
+        height: 7rem;
+    }
+}
+
+// Styling vid mindre skrämar (max 600px)
 @media (max-width: 600px) {
 
     #submit,
@@ -194,9 +202,7 @@ img {
         }
     }
 
-    // Styling för när popup visas
     .popup.show {
-        height: auto;
-        padding: 1rem;
+        height: 8rem;
     }
 }
