@@ -26,7 +26,6 @@ function displayExperiences(experiences) {
 
     // Hämtar container för jobberfarenheter och lagrar i variabel
     const workContainer = document.getElementById("work-container");
-    workContainer.innerHTML = ""; // Tömmer tidigare innehåll
 
     // Sorterar erfarenheterna baserat på startdatum med den senast påbörjade erfarenheten först
     experiences.sort((a, b) => {
@@ -41,6 +40,7 @@ function displayExperiences(experiences) {
 
     // Kontrollerar om containern existerar på sidan
     if (workContainer) {
+        workContainer.innerHTML = ""; // Tömmer tidigare innehåll
         // Loopar isåfall igenom varje erfarenhet
         experiences.forEach(experience => {
 
@@ -72,7 +72,7 @@ function displayExperiences(experiences) {
             <p>${experience.description}</p>
             </div>
             <div>
-            <button class="edit-btn">Redigera</button>
+            <button class="edit-btn">Redigera <i class="fa-solid fa-pen-to-square"></i></button>
             <button class="delete-btn">Radera <i class='fa fa-solid fa-trash-can'></i></button>
             </div>
         `;
