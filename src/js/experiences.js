@@ -40,7 +40,7 @@ function displayExperiences(experiences) {
 
     // Kontrollerar om containern existerar på sidan
     if (workContainer) {
-        workContainer.innerHTML = ""; // Tömmer tidigare innehåll
+        workContainer.innerHTML = "<h2>Mina jobberfarenheter</h2>"; // Tömmer tidigare innehåll och visar endast rubriken
         // Loopar isåfall igenom varje erfarenhet
         experiences.forEach(experience => {
 
