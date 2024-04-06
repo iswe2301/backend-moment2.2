@@ -17,22 +17,46 @@
 
 <body>
 
-    <!-- Header med logotyp och navmeny -->
     <div id="overlay" class="hidden"></div>
-    <header>
-        <a href="/"><img src="images/logo.svg" alt="Logotyp WorkXperience"></a>
-        <nav id="menu">
-            <ul>
-                <li><a href="index.html">ERFARENHETER</a></li>
-                <li><a class="active" href="add.html">LÄGG TILL ERFARENHET</a></li>
-                <li><a href="about.html">OM SIDAN</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Picturetagg med bakgrundbild i olika filformat / storlekar -->
+    <picture class="body-background">
+        <source srcset="images/background.jpg?as=avif" media="(min-width: 1921px)" type="image/avif">
+        <source srcset="images/background.jpg?as=webp" media="(min-width: 1921px)" type="image/webp">
+        <source srcset="images/background.jpg" media="(min-width: 1921px)" type="image/jpeg">
+        <source srcset="images/background.jpg?as=avif&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/avif">
+        <source srcset="images/background.jpg?as=webp&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/webp">
+        <source srcset="images/background.jpg?width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/jpeg">
+        <source srcset="images/background.jpg?as=avif&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/avif">
+        <source srcset="images/background.jpg?as=webp&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/webp">
+        <source srcset="images/background.jpg?width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/jpeg">
+        <source srcset="images/small_background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
+        <source srcset="images/small_background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
+        <source srcset="images/small_background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
+        <img id="background-img" src="images/background.jpg" alt="Rosa bubblor">
+    </picture>
 
     <!-- Huvudinnehåll -->
     <main>
-        <h1>Lägg till erfarenhet</h1>
+
+        <!-- Header med logotyp och navmeny -->
+        <header>
+            <a href="/"><img src="images/logo.svg" alt="Logotyp WorkXperience"></a>
+            <nav id="menu">
+                <ul>
+                    <li><a href="index.html">ERFARENHETER</a></li>
+                    <li><a class="active" href="add.html">LÄGG TILL ERFARENHET</a></li>
+                    <li><a href="about.html">OM SIDAN</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <h1>LÄGG TILL ERFARENHET</h1>
         <section id="add-section">
             <h2>Ny erfarenhet</h2>
             <!-- Formulär för att lägga till nya erfarenheter -->
@@ -49,7 +73,8 @@
                 <label for="startdate">Startdatum <span class="required">*</span></label>
                 <input type="date" id="startdate" name="startdate" required>
 
-                <label class="tooltip" for="enddate">Slutdatum <i class="fa-solid fa-circle-info"></i><span class="tooltiptext">Om du
+                <label class="tooltip" for="enddate">Slutdatum <i class="fa-solid fa-circle-info"></i><span
+                        class="tooltiptext">Om du
                         inte väljer något slutdatum får din jobberfarenhet automatiskt status "Pågående".</span></label>
                 <input type="date" id="enddate" name="enddate">
 
