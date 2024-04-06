@@ -39,7 +39,10 @@
 #edit-container {
     display: none;
     width: 100%;
-    padding: 0 2rem;
+
+    h3 {
+        margin: 2rem 0 2rem 2rem;
+    }
 }
 
 .edit-btn {
